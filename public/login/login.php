@@ -18,7 +18,7 @@ include('h.php');
             <form name="formlogin" action="checklogin.php" method="POST" id="login" class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="text" name="username" class="form-control" required placeholder="Username" autocomplete="off"/>
+                        <input type="text" name="username" class="form-control" required placeholder="Username" autocomplete="off" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -31,9 +31,6 @@ include('h.php');
                         <button type="submit" class="btn btn-success" id="btn">
                             <span class="glyphicon glyphicon-log-in"> </span>
                             Login </button>
-                        <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                        </label>
                     </div>
                 </div>
             </form>
