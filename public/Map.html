@@ -1,8 +1,8 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+<html>
 
 <head>
-	<!-- meta data -->
+    	<!-- meta data -->
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,11 +47,18 @@
 	<!--responsive.css-->
 	<link rel="stylesheet" href="assets/css/responsive.css">
 
+    <meta charset="utf-8" />
+    <title>Distances btn two cities App</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://kit.fontawesome.com/ab2155e76b.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="assets/css/App.css" rel="stylesheet" />
 </head>
 
 <body>
 
-	<!--header-top start -->
+    	<!--header-top start -->
 	<header id="header-top" class="header-top">
 		<ul>
 			<li>
@@ -132,29 +139,41 @@
 	</section><!-- /.top-area-->
 	<!-- top-area End -->
 
-	
-    <section>
-        <!-- Contact container -->
-        <div class="contact-container" style="margin-top: 5rem; margin-bottom: 5rem;">
-            <!-- Form -->
-            <div class="from-container">
-                <h3>ติดต่อเรา</h3>
-                <h2>Email</h2>
-                <h1>xxxx@Ku.th</h1>
-                <h2>Call Center</h2>
-                <h1>+xx xxx xxxx</h1>
-                <h2>ที่อยู่</h2>
-                <h1>199 ม.6 ต.ทุ่งสุขลา อ.ศรีราชา จ.ชลบุรี 20230</h1>
-            </div>
-            <!-- map -->
-            <div class="map"><iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.6565671428534!2d100.9166241745488!3d13.120929611587766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3102b67ef835f265%3A0x963c6129282e5cb!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4LmA4LiB4Lip4LiV4Lij4Lio4Liy4Liq4LiV4Lij4LmMIOC4p-C4tOC4l-C4ouC4suC5gOC4guC4leC4qOC4o-C4teC4o-C4suC4iuC4sg!5e0!3m2!1sth!2sth!4v1709042497667!5m2!1sth!2sth"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="jumbotron">
+        <div class="container-fluid">
+            <h1>ค้นหาระยะห่างระหว่างสองสถานที่</h1>
+            <p>ฟังชั่นนี้จะช่วยคุณคำนวณระยะทางการเดินทางของคุณ</p>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="from" class="col-xs-2 control-label"><i class="far fa-dot-circle"></i></label>
+                    <div class="col-xs-4">
+                        <input type="text" id="from" placeholder="ต้นทาง" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+
+                    <label for="to" class="col-xs-2 control-label"><i class="fas fa-map-marker-alt"></i></label>
+                    <div class="col-xs-4">
+                        <input type="text" id="to" placeholder="ปลายทาง" class="form-control">
+                    </div>
+
+                </div>
+
+            </form>
+
+            <div class="col-xs-offset-2 col-xs-10">
+                <button class="btn btn-info btn-lg " onclick="calcRoute();"><i class="fas fa-map-signs"></i></button>
             </div>
         </div>
-    </section>
+        <div class="container-fluid">
+            <div id="googleMap">
+            </div>
+            <div id="output">
+            </div>
+        </div>
+    </div>
 
-	<!--footer start-->
+    <!--footer start-->
 	<footer id="footer" class="footer">
 		<div class="container">
 			<div class="footer-menu">
@@ -168,7 +187,7 @@
 						<ul class="footer-menu-item">
 							<li><a href="Hotel.html">HOTEL</a></li>
 							<li><a href="Restaurant.html">RESTAURANT</a></li>
-							<li><a href="#reviews">REVIEW</a></li>
+							<li><a href="Map.html">Map</a></li>
 							<li><a href="#blog">BLOG</a></li>
 							<li><a href="Contact.html">contact</a></li>
 						</ul><!--/.nav -->
@@ -201,15 +220,12 @@
 				<i class="fa fa-angle-up " id="scroll-top" data-toggle="tooltip" data-placement="top" title=""
 					data-original-title="Back to Top" aria-hidden="true"></i>
 			</div>
-
 		</div><!--/.scroll-Top-->
 
 	</footer><!--/.footer-->
 	<!--footer end-->
 
-	<!-- Include all js compiled plugins (below), or include individual files as needed -->
-
-	<script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery.js"></script>
 
 	<!--modernizr.min.js-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
@@ -235,6 +251,16 @@
 	<!--Custom JS-->
 	<script src="assets/js/custom.js"></script>
 
+    <!-- Reel facebook -->
+	<script async defer src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWX1Ic2TZ5pLE96U7SuMb7ltq1rFR0lO0&libraries=places"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="Scripts/jquery-3.1.1.min.js"></script>
+    <script src="assets/js/Main.js"></script>
 </body>
 
 </html>
