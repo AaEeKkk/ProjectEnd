@@ -11,7 +11,7 @@ include('h.php');
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4" style="background-color:#D6EAF8">
-            <h3 style="align-items: center;">
+            <h3 align = "center">
                 <span class="glyphicon glyphicon-lock"> </span>
                 Form Login
             </h3>
