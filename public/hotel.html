@@ -78,7 +78,7 @@
     redirect: "follow"
   };
   
-  fetch("https://tatapi.tourismthailand.org/tatapi/v5/attraction/P03000001", requestOptions)
+  fetch("https://tatapi.tourismthailand.org/tatapi/v5/accommodation/P02000001", requestOptions)
     .then(response => response.json()) // Parse response as JSON
     .then(data => {
       cards.innerHTML = '';
@@ -93,7 +93,7 @@
                 <div class="card-body">
                   <h5 class="card-title">${element.place_name}</h5>
                   <p class="card-text text-truncate">${element.place_information.introduction}</p>
-                  <a href="attaction.html?id=" class="btn btn-primary">See more</a>
+                  <a href="..." class="btn btn-primary">See more</a>
                 </div>
               </div>
             </div>

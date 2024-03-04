@@ -4,102 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript API Call</title>
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script>
-        const apiKey = 'GqTKg1f3YqpOuOrpQFIxqomr0uBrfT(oBYdbI8nJIK6l1Hj4FWz8YMgoHvNjC9l5d9Ek1JT8KJqaMbMTORBkOj0=====2'; // Replace 'YOUR_API_KEY' with your actual API key
-        
-        let request = new XMLHttpRequest();
-        request.open('GET', 'https://tatapi.tourismthailand.org/tatapi/v5/attraction/P03000001');
-        request.setRequestHeader('Authorization', `Bearer ${apiKey}`);
-        request.send();
-        request.onload = () => {
-            if (request.status === 200) {
-                let responseData = JSON.parse(request.responseText);
-                console.log(responseData);
-                // Now you can work with the responseData object
-            } else {
-                console.error('Request failed with status:', request.status);
-            }
-        }
-    </script>
   <div class="container">
     <h1>Travel Sriracha</h1>
-    <div id= "cards" class="row">
-      <div class="col-12 col-lg-4 mt-2">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4 mt-2">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-lg-4 mt-2">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
+    <div id="cards" class="row">
+      <!-- Cards will be dynamically generated here -->
     </div>
   </div>
-</body>
-</html>
 
-<script>
-var cards = document.getElementById('cards');
-// cards.innerHTML = 'Loading...';
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-const myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer GqTKg1f3YqpOuOrpQFIxqomr0uBrfT(oBYdbI8nJIK6l1Hj4FWz8YMgoHvNjC9l5d9Ek1JT8KJqaMbMTORBkOj0=====2");
-myHeaders.append("Accept-Language", "th");
-myHeaders.append("Content-Type", "application/json, text/json");
+  <script>
+    var cards = document.getElementById('cards');
+    cards.innerHTML = 'loading...';
 
-const requestOptions = {
-  method: "GET",
-  headers: myHeaders,
-  redirect: "follow"
-};
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer GqTKg1f3YqpOuOrpQFIxqomr0uBrfT(oBYdbI8nJIK6l1Hj4FWz8YMgoHvNjC9l5d9Ek1JT8KJqaMbMTORBkOj0=====2");
+    myHeaders.append("Accept-Language", "th");
+    myHeaders.append("Content-Type", "application/json, text/json");
 
-fetch("https://tatapi.tourismthailand.org/tatapi/v5/attraction/P03000002", requestOptions)
-  .then((response) => response.text())
-  .then(result => {
-    cards.innerHTML = '';
-    var jsonObj = JSON.parse(result);
-    for (let attraction of jsonObj) {
-      const card = `
-      <div class="col-12 col-lg-4 mt-2">
-        <div class="card" style="width: 18rem;">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    const requestOptions = {
+      method: "GET",
+      headers: myHeaders,
+      redirect: "follow"
+    };
+
+    fetch("https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword=อาหาร&location=13.6904831,100.5226014&categorycodes=RESTAURANT&provinceName=Bangkok&radius=20&numberOfResult=10&pagenumber=1&destination=Bangkok&filterByUpdateDate=2019/09/01-2021/12/31", requestOptions)
+      .then(response => response.json()) // Parse response as JSON
+      .then(data => {
+  cards.innerHTML = ''; // Clear the loading message
+  console.log(data);
+  if (Array.isArray(data)) { // Check if data is an array
+    data.forEach(element => { // Loop through each element in the array
+      // Check if 'place_information' and 'introduction' exist before accessing them
+      const introduction = element.place_information ? element.place_information.introduction : "No introduction available";
+      const cardHTML = `
+        <div class="col-12 col-lg-4 mt-2">
+          <div class="card" style="width: 18rem;">
+            <img src="${element.thumbnail_url}" class="card-img-top" alt="${element.place_name}">
+            <div class="card-body">
+              <h5 class="card-title">${element.place_name}</h5>
+              <p class="card-text text-truncate">${introduction}</p>
+              <a href="attraction.html?id=${element.id}" class="btn btn-primary">See more</a>
+            </div>
           </div>
         </div>
-      </div>
       `;
-      cards.insertAdjacentHTML('beforeend', card);
-    }
-  })
-  .catch((error) => console.log('error', error));
-</script>
+      // Insert HTML of each card into the DOM
+      cards.insertAdjacentHTML('beforeend', cardHTML);
+    });
+  }
+})
+.catch(error => console.log('Error fetching data:', error));
+
+  </script>
+</body>
+</html>
