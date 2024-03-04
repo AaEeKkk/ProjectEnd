@@ -117,28 +117,85 @@
 
 	</section><!-- /.top-area-->
 	<!-- top-area End -->
-
-	
-    <section>
-        <!-- Contact container -->
-        <div class="contact-container" style="margin-top: 5rem; margin-bottom: 5rem;">
-            <!-- Form -->
-            <div class="from-container">
-                <h3>ติดต่อเรา</h3>
-                <h2>Email</h2>
-                <h1>xxxx@Ku.th</h1>
-                <h2>Call Center</h2>
-                <h1>+xx xxx xxxx</h1>
-                <h2>ที่อยู่</h2>
-                <h1>199 ม.6 ต.ทุ่งสุขลา อ.ศรีราชา จ.ชลบุรี 20230</h1>
-            </div>
-            <!-- map -->
-            <div class="map"><iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3885.6565671428534!2d100.9166241745488!3d13.120929611587766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3102b67ef835f265%3A0x963c6129282e5cb!2z4Lih4Lir4Liy4Lin4Li04LiX4Lii4Liy4Lil4Lix4Lii4LmA4LiB4Lip4LiV4Lij4Lio4Liy4Liq4LiV4Lij4LmMIOC4p-C4tOC4l-C4ouC4suC5gOC4guC4leC4qOC4o-C4teC4o-C4suC4iuC4sg!5e0!3m2!1sth!2sth!4v1709042497667!5m2!1sth!2sth"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+<section>
+  <div class="container">
+    <h1>Travel Sriracha</h1>
+    <div id= "cards" class="row">
+      <div class="col-12 col-lg-4 mt-2">
+        <div class="card" >
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
         </div>
-    </section>
+      </div>
+      <div class="col-12 col-lg-4 mt-2">
+        <div class="card" >
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 mt-2">
+        <div class="card" >
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  var cards = document.getElementById('cards');
+  cards.innerHTML ='loading...';
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer GqTKg1f3YqpOuOrpQFIxqomr0uBrfT(oBYdbI8nJIK6l1Hj4FWz8YMgoHvNjC9l5d9Ek1JT8KJqaMbMTORBkOj0=====2");
+  myHeaders.append("Accept-Language", "th");
+  myHeaders.append("Content-Type", "application/json, text/json");
+  
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+  
+  fetch("https://tatapi.tourismthailand.org/tatapi/v5/attraction/P03000001", requestOptions)
+    .then(response => response.json()) // Parse response as JSON
+    .then(data => {
+      cards.innerHTML = '';
+        console.log(data);
+        if (data && typeof data === "object") { // Check if data is an object
+          for (const key in data) { // Loop through each key in the object
+            const element = data[key]; // Access the value corresponding to the key
+            const cardHTML = `
+            <div class="col-12 col-lg-4 mt-2">
+              <div class="card" >
+                <img src="${element.thumbnail_url}" class="card-img-top" alt="${element.place_name}">
+                <div class="card-body">
+                  <h5 class="card-title">${element.place_name}</h5>
+                  <p class="card-text text-truncate">${element.place_information.introduction}</p>
+                  <a href="attaction.html?id=" class="btn btn-primary">See more</a>
+                </div>
+              </div>
+            </div>
+          `;
+            // Insert HTML of each card into the DOM
+            cards.insertAdjacentHTML('beforeend', cardHTML);
+          }
+        }
+      })
+    .catch(error => console.log('Error fetching data:', error));
+  </script>
 
 	<!--footer start-->
 	<footer id="footer" class="footer">

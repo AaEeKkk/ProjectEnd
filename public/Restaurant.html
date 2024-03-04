@@ -104,7 +104,7 @@
 							<li><a href="Main.html">MAIN</a></li>
 							<li><a href="Hotel.html">HOTEL</a></li>
 							<li><a href="Restaurant.html">RESTAURANT</a></li>
-							<li><a href="#!">Travel</a></li>
+							<li><a href="Travel.html">Travel</a></li>
 							<li><a href="Map.html">Map</a></li>
 							<li><a href="Contact.html">contact</a></li>
 						</ul><!--/.nav -->
@@ -117,24 +117,85 @@
 
 	</section><!-- /.top-area-->
 	<!-- top-area End -->
+<section class="works">
+	<div class="container">
+    <h1>Restaurant Sriracha</h1>
+    <div id= "cards" class="row">
+      <div class="col-12 col-lg-4 mt-2">
+        <div class="card" >
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 mt-2">
+        <div class="card" >
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 mt-2">
+        <div class="card" >
+          <img src="..." class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-	
+<script>
+  var cards = document.getElementById('cards');
+  cards.innerHTML ='loading...';
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", "Bearer GqTKg1f3YqpOuOrpQFIxqomr0uBrfT(oBYdbI8nJIK6l1Hj4FWz8YMgoHvNjC9l5d9Ek1JT8KJqaMbMTORBkOj0=====2");
+  myHeaders.append("Accept-Language", "th");
+  myHeaders.append("Content-Type", "application/json, text/json");
+  
+  const requestOptions = {
+    method: "GET",
+    headers: myHeaders,
+    redirect: "follow"
+  };
+  
+  fetch("https://tatapi.tourismthailand.org/tatapi/v5/places/search?keyword=อาหาร&location=13.6904831,100.5226014&categorycodes=RESTAURANT&provinceName=Bangkok&radius=20&numberOfResult=10&pagenumber=1&destination=Bangkok&filterByUpdateDate=2019/09/01-2021/12/31", requestOptions)
+    .then(response => response.json()) // Parse response as JSON
+    .then(data => {
+        cards.innerHTML = ''; // Clear the "loading..." text
+        if (data && data.result && Array.isArray(data.result)) { // Check if data is valid and result is an array
+            data.result.forEach(element => { // Loop through each element in the result array
+                const cardHTML = `
+                    <div class="col-12 col-lg-4 mt-2">
+                        <div class="card">
+                            <img src="${element.thumbnail_url}" class="card-img-top" alt="${element.place_name}">
+                            <div class="card-body">
+                                <h5 class="card-title">${element.place_name}</h5>
+                                <p class="card-text text-truncate">...</p>
+                                <a href="" class="btn btn-primary">See more</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                console.log(element);
+                // Insert HTML of each card into the DOM
+                cards.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+    })
+    .catch(error => console.log('Error fetching data:', error));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </script>
 
 	<!--footer start-->
 	<footer id="footer" class="footer">
